@@ -33,3 +33,37 @@
   padding: 100px 20px;
   background: lightgray;
 }
+
+.dark {
+  background: rgb(70, 69, 69);
+  color: white;
+}
+
+.slide-container {
+  width: 300vw;
+  transition: all 0.5s;
+}
+
+.slide-box {
+  width: 100vw;
+  float: left;
+  position: relative;
+}
+
+.slide-box img {
+  width: 100%;
+}
+
+.btn-slide {
+  height: 15px;
+  width: 15px;
+  border: none;
+  background: wheat;
+  border-radius: 50%;
+}
+
+.btn-box {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
