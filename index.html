@@ -50,7 +50,7 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <span class="navbar-brand">Navbar</span>
-        <span class="badge bg-dark">Dark 🔄</span>
+        <span class="ms-auto mx-3 badge bg-dark">Dark 🔄</span>
         <button class="navbar-toggler" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -68,6 +68,13 @@
     <div class="main-bg">
       <h4>Shirts on sale!</h4>
       <button class="btn btn-danger" id="btn-login">로그인</button>
+    </div>
+
+    <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas
+      voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat
+      sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur
+      praesentium exercitationem.
     </div>
 
     <div class="alert alert-danger">
@@ -94,7 +101,7 @@
       <button class="btn-slide slide-3"></button>
       <button class="next">다음</button>
     </div>
-
+    <div style="height: 1000px"></div>
     <script>
       $('.navbar-toggler').on('click', function () {
         $('.list-group').slideToggle('show-list');
@@ -168,6 +175,26 @@
         } else {
           $('.slide-container').css('transform', 'translateX(0)');
           slideIndex = 1;
+        }
+      });
+
+      $(window).on('scroll', function () {
+        if ($(window).scrollTop() >= 100) {
+          $('.navbar-brand').css('font-size', '20px');
+        } else {
+          $('.navbar-brand').css('font-size', '30px');
+        }
+      });
+
+      let scrollCount = 0;
+      $('.lorem').on('scroll', function () {
+        let scrolled = document.querySelector('.lorem').scrollTop;
+        let scrollH = document.querySelector('.lorem').scrollHeight;
+        let clientH = document.querySelector('.lorem').clientHeight;
+
+        if (scrolled + clientH >= scrollH - 10 && scrollCount == 0) {
+          scrollCount = 1;
+          alert('스크롤이 끝까지 도달했습니다.');
         }
       });
     </script>
