@@ -9,6 +9,11 @@ ul.list::after {
   display: block;
   clear: both;
 }
+
+.form-hide {
+  display: none !important;
+}
+
 .tab-button {
   display: block;
   padding: 10px 20px 10px 20px;
