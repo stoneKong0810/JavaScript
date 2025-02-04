@@ -4,10 +4,44 @@ var products = [
   { id: 2, price: 60000, title: 'Black Monastery' },
 ];
 
-document.querySelectorAll('.card-body h5')[0].innerHTML = products[0].title;
-document.querySelectorAll('.card-body p')[0].innerHTML =
-  '가격 : ' + products[0].price;
+function showMore(products) {
+  products.forEach((data, i) => {
+    let cardTemplate = `<div class="col-sm-4">
+    <img src="https://picsum.photos/600" class="w-100" />
+    <h5>${data.title}</h5>
+    <p>가격 : ${data.price}</p>
+  </div>`;
 
-document.querySelectorAll('.card-body h5')[1].innerHTML = products[1].title;
-document.querySelectorAll('.card-body p')[1].innerHTML =
-  '가격 : ' + products[1].price;
+    $('.row').append(cardTemplate);
+  });
+}
+
+showMore(products);
+
+let clicked = 1;
+$('#more').click(() => {
+  if (clicked == 1) {
+    $.get(`https://codingapple1.github.io/js/more${clicked}.json`).done(
+      (data) => {
+        showMore(data);
+        clicked++;
+      }
+    );
+  } else if (clicked == 2) {
+    $.get(`https://codingapple1.github.io/js/more${clicked}.json`).done(
+      (data) => {
+        showMore(data);
+        clicked++;
+      }
+    );
+  } else {
+    alert('더이상 상품이 없습니다.');
+    $('#more').hide();
+  }
+});
+
+$('#price').click(function () {
+  products.sort((a, b) => a.price - b.price);
+  $('.row').empty();
+  showMore(products);
+});
