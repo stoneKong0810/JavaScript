@@ -10,6 +10,7 @@ function showMore(products) {
     <img src="https://picsum.photos/600" class="w-100" />
     <h5>${data.title}</h5>
     <p>가격 : ${data.price}</p>
+    <button class="buy">구매</button>
   </div>`;
 
     $('.row').append(cardTemplate);
@@ -62,4 +63,16 @@ $('#filter').click(function () {
   let filter = products.filter((data) => data.price <= 60000);
   $('.row').empty();
   showMore(filter);
+});
+
+$('.buy').click(function (e) {
+  alert('장바구니에 추가되었습니다.');
+  let title = $(e.target).siblings('h5').text();
+  if (localStorage.getItem('cart') === null) {
+    localStorage.setItem('cart', JSON.stringify([title]));
+  } else if (localStorage.getItem('cart') !== null) {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    cart.push(title);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 });
