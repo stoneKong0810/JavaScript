@@ -45,3 +45,21 @@ $('#price').click(function () {
   $('.row').empty();
   showMore(products);
 });
+
+$('#cba').click(function () {
+  products.sort((a, b) => {
+    if (a.title < b.title) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+  $('.row').empty();
+  showMore(products);
+});
+
+$('#filter').click(function () {
+  let filter = products.filter((data) => data.price <= 60000);
+  $('.row').empty();
+  showMore(filter);
+});
